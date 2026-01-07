@@ -1,0 +1,77 @@
+.about {
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 20px;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f6f4ff 60%,
+    #eef6ff 100%
+  );
+}
+
+/* small label */
+.about-tag {
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+/* main title */
+.about-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.about-title span {
+  color: var(--accent-purple);
+}
+
+/* subtitle */
+.about-sub {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #666;
+}
+
+/* text */
+.about-text {
+  max-width: 720px;
+  margin-top: 20px;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* stats */
+.about-stats {
+  display: flex;
+  gap: 60px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-stats div {
+  text-align: center;
+}
+
+.about-stats h3 {
+  font-size: 2.2rem;
+  color: var(--accent-purple);
+  margin-bottom: 6px;
+}
+
+.about-stats span {
+  font-size: 0.9rem;
+  color: #666;
+}

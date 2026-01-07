@@ -1,0 +1,140 @@
+/* ================= SERVICE PAGE BASE ================= */
+.service-page {
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(
+      circle at top,
+      rgba(140, 90, 255, 0.12),
+      #0b0b0f 70%
+    );
+  color: #eaeaf0;
+  padding-bottom: 120px;
+}
+
+/* ================= HERO ================= */
+.service-hero {
+  padding: 140px 8% 100px;
+  text-align: center;
+}
+
+.service-hero h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 22px;
+}
+
+.service-hero h1 span {
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+}
+
+.service-hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #cfd0ff;
+}
+
+/* ================= CONTENT ================= */
+.service-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 8%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+}
+
+/* ================= BLOCK ================= */
+.service-block {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 34px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+/* glow line */
+.service-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(140, 90, 255, 0.25),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.service-block:hover::before {
+  opacity: 1;
+}
+
+.service-block:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 80px rgba(140, 90, 255, 0.35);
+}
+
+/* ================= TITLE ================= */
+.service-block h2 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #ffffff;
+  text-shadow: 0 0 18px rgba(140, 90, 255, 0.6);
+}
+
+/* ================= LIST ================= */
+.service-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-block li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #e6e6ff;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 18px;
+}
+
+/* bullet glow dot */
+.service-block li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #8b5cf6;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .service-hero {
+    padding: 110px 6% 80px;
+  }
+
+  .service-hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .service-content {
+    gap: 24px;
+  }
+}
