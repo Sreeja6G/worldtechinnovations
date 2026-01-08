@@ -10,8 +10,7 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const [aboutVisible, setAboutVisible] = useState(false);
   const [showFormPopup, setShowFormPopup] = useState(true);
-  const navigate =
-  useNavigate();
+  const navigate = useNavigate();
 
   /* counters */
   useEffect(() => {
@@ -71,7 +70,7 @@ export default function Home() {
             <h2>🚀 Start Your Startup Journey</h2>
             <p>Tell us about your idea — we’ll help you build & scale it.</p>
             <a
-              href="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_LINK/viewform"
+              href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
               target="_blank"
               rel="noreferrer"
               className="popup-btn"
@@ -145,10 +144,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SERVICES */}
+{/* SERVICES */}
         <section className="services" id="services">
           <h2>Our Services</h2>
           <div className="service-row">
+            
             {["rd", "smm", "tech", "dreamx"].map((service) => (
               <div key={service} className="service-wrap">
                 <div
@@ -156,8 +156,12 @@ export default function Home() {
                     activeService === service ? "active" : ""
                   }`}
                   onClick={() => setActiveService(service)}
-                  onMouseMove={magneticMove}
-                  onMouseLeave={magneticLeave}
+                  onMouseMove={(e) => {
+  if (window.innerWidth > 768) magneticMove(e);
+}}
+onMouseLeave={(e) => {
+  if (window.innerWidth > 768) magneticLeave(e);
+}}
                 >
                   {service === "rd" && "R&D"}
                   {service === "smm" && "SMM"}
@@ -174,12 +178,12 @@ export default function Home() {
 >
   Explore
 </button>
-                </div>
-                </div>
-            ))}
-          </div>
+    </div>
+    </div>
+    ))}
+      </div>
         </section>
-
+       
         {/* COMPLETED PROJECTS */}
         <section className="projects-showcase">
           <h2 className="projects-title">✅ Completed Projects</h2>
@@ -298,6 +302,15 @@ export default function Home() {
     </div>
   </div>
 </section>
+<div className="join-us-wrapper">
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="join-us-btn"
+  >
+    Join Us
+  </a>
+</div>
         {/* FINAL CTA */}
         {/* ================= FOUNDER PROFILE ================= */}
 <section className="founder">
