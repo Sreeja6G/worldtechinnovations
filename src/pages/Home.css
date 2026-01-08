@@ -1603,4 +1603,11 @@ html {
     font-size: 0.9rem;
   }
 }
+/* ================= SERVICES LAYOUT ================= */
 
+.services-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 60px;
+  justify-items: center;
+}

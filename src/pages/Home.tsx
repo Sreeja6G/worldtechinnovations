@@ -86,7 +86,7 @@ export default function Home() {
       {/* Logo */}
       <div className="nav-logo">
         <img src="/logo.jpeg" alt="WorldTech Technologies" />
-        <span>WorldTech Technologies</span>
+        <span>WorldTech innovations</span>
       </div>
 
       {/* Links */}
