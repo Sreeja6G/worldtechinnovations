@@ -1603,30 +1603,4 @@ html {
     font-size: 0.9rem;
   }
 }
-@media (max-width: 768px) {
-  .services-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    justify-items: center;
-  }
 
-  .service-circle {
-    width: 120px;
-    height: 120px;
-    font-size: 0.9rem;
-  }
-
-  .service-btn {
-    position: static;
-    margin-top: 10px;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-  }
-
-  .service-circle.active {
-    transform: scale(1.05);
-    box-shadow: 0 0 18px rgba(108, 92, 231, 0.45);
-  }
-}
