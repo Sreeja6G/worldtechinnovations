@@ -1654,3 +1654,31 @@ html {
     padding: 12px 32px;
   }
 }
+/* 🧭 Mobile Navbar Fix */
+@media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px; /* Adds space left & right */
+  }
+
+  /* 🖼️ Logo area */
+  .navbar-logo img {
+    height: 36px;
+    width: auto;
+    margin-left: 4px; /* keeps it from touching the screen edge */
+  }
+
+  /* 🔗 Navbar links */
+  .navbar-links {
+    display: flex;
+    gap: 16px; /* Adds space between Home | Services | Contact */
+    font-size: 0.95rem;
+  }
+
+  /* Optional: Slightly smaller links for mobile */
+  .navbar-links a {
+    padding: 4px 6px;
+  }
+}
