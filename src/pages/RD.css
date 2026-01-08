@@ -2,45 +2,39 @@
 .service-page {
   width: 100%;
   min-height: 100vh;
-  background: radial-gradient(
-      circle at top,
-      rgba(140, 90, 255, 0.12),
-      #0b0b0f 70%
-    );
+  background: #0e0f14; /* solid dark base */
   color: #eaeaf0;
   padding-bottom: 120px;
+  font-family: "Inter", sans-serif;
 }
 
 /* ================= HERO ================= */
 .service-hero {
-  padding: 140px 8% 100px;
+  padding: 140px 8% 90px;
   text-align: center;
 }
 
 .service-hero h1 {
-  font-size: clamp(2.8rem, 5vw, 4rem);
-  font-weight: 900;
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  font-weight: 800;
   color: #ffffff;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .service-hero h1 span {
-  background: linear-gradient(90deg, #8b5cf6, #ec4899);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+  color: #8b5cf6; /* subtle accent */
+  font-weight: 800;
 }
 
 .service-hero p {
   max-width: 760px;
   margin: 0 auto;
-  font-size: 1.15rem;
-  line-height: 1.7;
-  color: #cfd0ff;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #cfd3ff; /* readable soft gray */
 }
 
-/* ================= CONTENT ================= */
+/* ================= CONTENT GRID ================= */
 .service-content {
   max-width: 1100px;
   margin: 0 auto;
@@ -48,51 +42,29 @@
 
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 36px;
+  gap: 32px;
 }
 
-/* ================= BLOCK ================= */
+/* ================= SERVICE BLOCK ================= */
 .service-block {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(16px);
-  border-radius: 24px;
-  padding: 34px 30px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-/* glow line */
-.service-block::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(140, 90, 255, 0.25),
-    transparent
-  );
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.service-block:hover::before {
-  opacity: 1;
+  background: #151722; /* clean card background */
+  border-radius: 18px;
+  padding: 32px 28px;
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-block:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 30px 80px rgba(140, 90, 255, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
-/* ================= TITLE ================= */
+/* ================= BLOCK TITLE ================= */
 .service-block h2 {
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 16px;
   color: #ffffff;
-  text-shadow: 0 0 18px rgba(140, 90, 255, 0.6);
 }
 
 /* ================= LIST ================= */
@@ -104,37 +76,91 @@
 
 .service-block li {
   font-size: 0.95rem;
-  line-height: 1.6;
-  color: #e6e6ff;
+  line-height: 1.65;
+  color: #d9dbf0;
   margin-bottom: 10px;
-  position: relative;
   padding-left: 18px;
+  position: relative;
 }
 
-/* bullet glow dot */
+/* simple bullet */
 .service-block li::before {
-  content: "";
+  content: "•";
   position: absolute;
   left: 0;
-  top: 0.6em;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #8b5cf6;
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.8);
+  color: #8b5cf6;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+/* ================= SECTION SPACING ================= */
+.service-section {
+  margin-top: 60px;
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
   .service-hero {
-    padding: 110px 6% 80px;
+    padding: 110px 6% 70px;
   }
 
   .service-hero h1 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
   }
 
   .service-content {
-    gap: 24px;
+    gap: 22px;
   }
+}
+/* ================= ENTRANCE ANIMATION ================= */
+
+/* fade + slight move */
+@keyframes fadeUpSoft {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HERO TEXT ================= */
+.service-hero h1 {
+  animation: fadeUpSoft 0.9s ease forwards;
+}
+
+.service-hero p {
+  animation: fadeUpSoft 1.2s ease forwards;
+}
+
+/* ================= SERVICE BLOCK APPEAR ================= */
+.service-block {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUpSoft 0.8s ease forwards;
+}
+
+/* stagger effect */
+.service-block:nth-child(1) { animation-delay: 0.1s; }
+.service-block:nth-child(2) { animation-delay: 0.2s; }
+.service-block:nth-child(3) { animation-delay: 0.3s; }
+.service-block:nth-child(4) { animation-delay: 0.4s; }
+.service-block:nth-child(5) { animation-delay: 0.5s; }
+.service-block:nth-child(6) { animation-delay: 0.6s; }
+
+/* ================= HOVER MICRO-INTERACTION ================= */
+.service-block:hover h2 {
+  transform: translateX(6px);
+  transition: transform 0.3s ease;
+}
+
+/* bullet animation */
+.service-block li::before {
+  transition: transform 0.3s ease;
+}
+
+.service-block:hover li::before {
+  transform: scale(1.3);
 }
