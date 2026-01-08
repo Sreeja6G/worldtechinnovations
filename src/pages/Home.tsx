@@ -304,7 +304,7 @@ export default function Home() {
   <div className="founder-glow" />
 
   <h2 className="founder-title">
-    Meet the <span>Founder</span>
+    Meet Our <span>Founder</span>
   </h2>
 
   <h3 className="founder-name">
