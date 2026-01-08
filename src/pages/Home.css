@@ -1603,3 +1603,46 @@ html {
     font-size: 0.9rem;
   }
 }
+/* ================= SERVICES MOBILE FIX ================= */
+@media (max-width: 768px) {
+
+  /* container spacing */
+  .services {
+    padding: 80px 16px 100px;
+  }
+
+  /* title spacing */
+  .services h2 {
+    font-size: 2.2rem;
+    margin-bottom: 50px;
+  }
+
+  /* force clean 2-column layout */
+  .services-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+    justify-items: center;
+  }
+
+  /* smaller circles for phone */
+  .service-circle {
+    width: 130px;
+    height: 130px;
+    font-size: 0.95rem;
+  }
+
+  /* reduce glow so text stays clear */
+  .service-circle.active {
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+    transform: scale(1.06);
+  }
+
+  /* explore button placement */
+  .service-btn {
+    bottom: -34px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+  }
+
+}
