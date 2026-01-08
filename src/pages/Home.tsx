@@ -149,7 +149,7 @@ export default function Home() {
         <section className="services" id="services">
           <h2>Our Services</h2>
           <div className="service-row">
-            {["rd", "smm", "dreamx", "tech"].map((service) => (
+            {["rd", "smm", "tech", "dreamx"].map((service) => (
               <div key={service} className="service-wrap">
                 <div
                   className={`service-circle ${service} ${
