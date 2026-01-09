@@ -1653,3 +1653,12 @@ html {
     display: block;
   }
 }
+@media (max-width: 768px) {
+  .service-circle {
+    margin-bottom: 10px;
+  }
+
+  .service-btn {
+    box-shadow: 0 0 20px rgba(140, 90, 255, 0.7);
+  }
+}
