@@ -143,47 +143,42 @@ export default function Home() {
             <div><h3>{months}+</h3><span>Months Strong</span></div>
           </div>
         </section>
+<section className="services" id="services">
+  <h2>Our Services</h2>
 
-{/* SERVICES */}
-        <section className="services" id="services">
-          <h2>Our Services</h2>
-          <div className="service-row">
-            
-            {["rd", "smm", "tech", "dreamx"].map((service) => (
-              <div key={service} className="service-wrap">
-                <div
-                  className={`service-circle ${service} ${
-                    activeService === service ? "active" : ""
-                  }`}
-                  onClick={() => setActiveService(service)}
-                  onMouseMove={(e) => {
-  if (window.innerWidth > 768) magneticMove(e);
-}}
-onMouseLeave={(e) => {
-  if (window.innerWidth > 768) magneticLeave(e);
-}}
-                >
-                  {service === "rd" && "R&D"}
-                  {service === "smm" && "SMM"}
-                  {service === "tech" && "Technology"}
-                  {service === "dreamx" && "DreamX"}
-                  
-            
-            <button
-  className="service-btn"
-  onClick={(e) => {
-    e.stopPropagation();
-    navigate(`/services/${service}`);
-  }}
->
-  Explore
-</button>
-    </div>
-    </div>
-    ))}
+  <div className="service-row">
+    {["rd", "smm", "tech", "dreamx"].map((service) => (
+      <div key={service} className="service-wrap">
+
+        {/* CIRCLE */}
+        <div
+          className={`service-circle ${service} ${
+            activeService === service ? "active" : ""
+          }`}
+          onClick={() => setActiveService(service)}
+          onMouseMove={magneticMove}
+          onMouseLeave={magneticLeave}
+        >
+          {service === "rd" && "R&D"}
+          {service === "smm" && "SMM"}
+          {service === "tech" && "Technology"}
+          {service === "dreamx" && "DreamX"}
+        </div>
+
+        {/* EXPLORE BUTTON (OUTSIDE CIRCLE) */}
+        <button
+          className="service-btn"
+          onClick={() => navigate(`/services/${service}`)}
+        >
+          Explore
+        </button>
+
       </div>
-        </section>
-       
+    ))}
+  </div>
+</section>
+
+
         {/* COMPLETED PROJECTS */}
         <section className="projects-showcase">
           <h2 className="projects-title">✅ Completed Projects</h2>
@@ -302,15 +297,10 @@ onMouseLeave={(e) => {
     </div>
   </div>
 </section>
-<div className="join-us-wrapper">
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="join-us-btn"
-  >
-    Join Us
-  </a>
-</div>
+<section className="join-section">
+  <button className="join-btn">Join Us</button>
+</section>
+
         {/* FINAL CTA */}
         {/* ================= FOUNDER PROFILE ================= */}
 <section className="founder">
