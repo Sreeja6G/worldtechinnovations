@@ -1662,3 +1662,10 @@ html {
     box-shadow: 0 0 20px rgba(140, 90, 255, 0.7);
   }
 }
+/* ===== LOCK EXPLORE BUTTON (DESKTOP FIX) ===== */
+.service-btn {
+  position: relative;
+  transform: translate(0, 0) !important;
+  transition: transform 0.25s ease;
+  pointer-events: auto;
+}

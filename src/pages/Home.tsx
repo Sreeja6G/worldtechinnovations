@@ -44,20 +44,30 @@ export default function Home() {
   useEffect(() => {
     setShowFormPopup(true);
   }, []);
+/* ===== MAGNETIC EFFECT (DESKTOP ONLY) ===== */
 
-  /* magnetic */
-  const magneticMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = e.currentTarget;
-    const rect = el.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    el.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px) scale(1.18)`;
-  };
+// check desktop (mouse present)
+const isDesktop = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.currentTarget.style.transform = "translate(0,0) scale(1)";
-  };
+const magneticMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  if (!isDesktop()) return; // ❌ mobile blocked
 
+  const el = e.currentTarget;
+  const rect = el.getBoundingClientRect();
+
+  const x = e.clientX - rect.left - rect.width / 2;
+  const y = e.clientY - rect.top - rect.height / 2;
+
+  // smooth + limited movement
+  el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
+};
+
+const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const el = e.currentTarget;
+  el.style.transform = "translate(0, 0) scale(1)";
+};
   return (
     <>
       {/* ================= POPUP ================= */}
@@ -156,9 +166,9 @@ export default function Home() {
             activeService === service ? "active" : ""
           }`}
           onClick={() => setActiveService(service)}
-          onMouseMove={magneticMove}
-          onMouseLeave={magneticLeave}
-        >
+  onMouseMove={isDesktop() ? magneticMove : undefined}
+  onMouseLeave={isDesktop() ? magneticLeave : undefined}
+>
           {service === "rd" && "R&D"}
           {service === "smm" && "SMM"}
           {service === "tech" && "Technology"}
