@@ -1669,33 +1669,3 @@ html {
   transition: transform 0.25s ease;
   pointer-events: auto;
 }
-/* your existing Home.css code above */
-
-
-/* ================= DESKTOP ONLY ================= */
-@media (min-width: 769px) {
-  .service-wrap {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .service-btn {
-    position: absolute;
-    bottom: -52px;
-    left: 50%;
-    transform: translateX(-50%) !important;
-    pointer-events: auto;
-  }
-}
-
-/* ================= MOBILE (KEEP AS IS) ================= */
-@media (max-width: 768px) {
-  .service-btn {
-    position: relative;
-    bottom: 0;
-    margin-top: 20px;
-    transform: none !important;
-  }
-}
