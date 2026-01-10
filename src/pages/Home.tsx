@@ -307,10 +307,19 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     </div>
   </div>
 </section>
-<section className="join-section">
-  <button className="join-btn">Join Us</button>
-</section>
 
+{/* LEFT / RIGHT CONTENT */}
+
+<div className="join-center">
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
+    className="join-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Join Us →
+  </a>
+</div>
         {/* FINAL CTA */}
         {/* ================= FOUNDER PROFILE ================= */}
 <section className="founder">
