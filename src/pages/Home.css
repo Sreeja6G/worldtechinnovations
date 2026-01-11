@@ -1772,3 +1772,29 @@ html {
     font-size: 14px;
   }
 }
+/* ===== MOBILE NAV SPACING FIX (LOGO vs MENU) ===== */
+@media (max-width: 768px) {
+
+  /* Main nav container */
+  header,
+  .navbar,
+  .nav {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Logo + brand block */
+  .logo,
+  .brand,
+  .nav-logo {
+    margin-right: 14px; /* 👈 creates clear end */
+  }
+
+  /* Navigation links container */
+  .nav-links,
+  nav ul {
+    margin-left: auto;   /* 👈 pushes menu away from logo */
+    gap: 18px;
+  }
+
+}
