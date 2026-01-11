@@ -348,7 +348,7 @@ export default function Home() {
     <p className="footer-contact">
       📧{" "}
       <a href="mailto:worldtechinnovations786@gmail.com">
-        worldtechinnovations786@gmail.com
+        yaswanthworks786@gmail.com
       </a>
     </p>
 
