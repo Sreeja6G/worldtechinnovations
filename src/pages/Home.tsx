@@ -1,120 +1,100 @@
 import { useEffect, useState, useRef } from "react";
-import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import "./Home.css";
 
 export default function Home() {
   const [projects, setProjects] = useState(1);
   const [ventures, setVentures] = useState(1);
   const [months, setMonths] = useState(1);
+  const[showBanner,setShowBanner
+  ] =useState(true);
   const [activeService, setActiveService] = useState("rd");
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const [aboutVisible, setAboutVisible] = useState(false);
-  const [showFormPopup, setShowFormPopup] = useState(true);
   const navigate = useNavigate();
 
-  /* counters */
+  /* COUNTERS */
   useEffect(() => {
     let p = 0, v = 0, m = 0;
-
     const interval = setInterval(() => {
       if (p < 9) setProjects(++p);
       if (v < 3) setVentures(++v);
       if (m < 2) setMonths(++m);
       if (p === 9 && v === 3 && m === 2) clearInterval(interval);
     }, 120);
-
     return () => clearInterval(interval);
   }, []);
 
-  /* about observer */
+  /* ABOUT OBSERVER */
   useEffect(() => {
     const el = aboutRef.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setAboutVisible(true),
       { threshold: 0.4 }
     );
-
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
-  /* popup */
-  useEffect(() => {
-    setShowFormPopup(true);
-  }, []);
-/* ===== MAGNETIC EFFECT (DESKTOP ONLY) ===== */
+  /* MAGNETIC EFFECT */
+  const isDesktop = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-// check desktop (mouse present)
-const isDesktop = () =>
-  typeof window !== "undefined" &&
-  window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const magneticMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDesktop()) return;
+    const el = e.currentTarget;
+    const rect = el.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
+  };
 
-const magneticMove = (e: React.MouseEvent<HTMLDivElement>) => {
-  if (!isDesktop()) return; // ❌ mobile blocked
+  const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.transform = "translate(0,0) scale(1)";
+  };
 
-  const el = e.currentTarget;
-  const rect = el.getBoundingClientRect();
-
-  const x = e.clientX - rect.left - rect.width / 2;
-  const y = e.clientY - rect.top - rect.height / 2;
-
-  // smooth + limited movement
-  el.style.transform = `translate(${x * 0.25}px, ${y * 0.25}px) scale(1.05)`;
-};
-
-const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-  const el = e.currentTarget;
-  el.style.transform = "translate(0, 0) scale(1)";
-};
   return (
     <>
-      {/* ================= POPUP ================= */}
-      {showFormPopup && (
-        <div className="popup-overlay">
-          <div className="popup-box">
-            <button className="popup-close" onClick={() => setShowFormPopup(false)}>
-              ✕
-            </button>
-            <h2>🚀 Start Your Startup Journey</h2>
-            <p>Tell us about your idea — we’ll help you build & scale it.</p>
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
-              target="_blank"
-              rel="noreferrer"
-              className="popup-btn"
-              onClick={() => setShowFormPopup(false)}
-            >
-              Fill Startup Form →
-            </a>
-          </div>
+      {/* NAVBAR */}
+      <nav className="navbar">
+        <div className="nav-logo">
+          <img src="/logo.jpeg" alt="WorldTech Technologies" />
+          <span>WorldTech innovations</span>
         </div>
-      )}
-    <nav className="navbar">
-      {/* Logo */}
-      <div className="nav-logo">
-        <img src="/logo.jpeg" alt="WorldTech Technologies" />
-        <span>WorldTech innovations</span>
-      </div>
+        <ul className="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      {showBanner && (
+  <div className="startup-banner">
+    <span>
+      🚀 Have a startup idea? Let’s build it together.
+    </span>
 
-      {/* Links */}
-      <ul className="nav-links">
-        <li>
-          <a href="#home">Home</a>
-        </li>
-        <li>
-          <a href="#services">Services</a>
-        </li>
-        <li>
-          <a href="#contact">Contact</a>
-        </li>
-      </ul>
-    </nav>
-  );
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform"
+      target="_blank"
+      rel="noreferrer"
+      className="banner-btn"
+    >
+      Fill Startup Form →
+    </a>
 
-
+    <button
+      className="banner-close"
+      onClick={() => setShowBanner(false)}
+    >
+      ✕
+    </button>
+  </div>
+)}
+      {/* PAGE */}
       <div className="page">
+
         {/* HERO */}
         <section className="hero" id="home">
           <h1>
@@ -122,23 +102,20 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
             <span>Execution does.</span>
           </h1>
           <p className="hero-sub">
-            We turn startup vision into scalable products,
-            powerful brands, and measurable growth.
+            We turn startup vision into scalable products, powerful brands, and measurable growth.
           </p>
         </section>
 
         {/* ABOUT */}
         <section
-  id="about"
-  ref={aboutRef}
-  className={`about ${aboutVisible ? "about-active" : ""}`}
->
-        
+          id="about"
+          ref={aboutRef}
+          className={`about ${aboutVisible ? "about-active" : ""}`}
+        >
           <div className="about-tag">ABOUT US</div>
-          <h2 className="about-title">
-            WTI <span>Agency</span>
-          </h2>
+          <h2 className="about-title">WTI <span>Agency</span></h2>
           <p className="about-sub">WorldTechInnovations</p>
+
           <p className="about-text">
             Helping startups and businesses grow from idea to impact.
             <br /><br />
@@ -153,49 +130,39 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
             <div><h3>{months}+</h3><span>Months Strong</span></div>
           </div>
         </section>
-<section className="services" id="services">
-  <h2>Our Services</h2>
 
-  <div className="service-row">
-    {["rd", "smm", "tech", "dreamx"].map((service) => (
-      <div key={service} className="service-wrap">
+        {/* SERVICES */}
+        <section className="services" id="services">
+          <h2>Our Services</h2>
+          <div className="service-row">
+            {["rd", "smm", "tech", "dreamx"].map((service) => (
+              <div key={service} className="service-wrap">
+                <div
+                  className={`service-circle ${service} ${activeService === service ? "active" : ""}`}
+                  onClick={() => setActiveService(service)}
+                  onMouseMove={isDesktop() ? magneticMove : undefined}
+                  onMouseLeave={isDesktop() ? magneticLeave : undefined}
+                >
+                  {service === "rd" && "R&D"}
+                  {service === "smm" && "SMM"}
+                  {service === "tech" && "Technology"}
+                  {service === "dreamx" && "DreamX"}
+                </div>
 
-        {/* CIRCLE */}
-        <div
-          className={`service-circle ${service} ${
-            activeService === service ? "active" : ""
-          }`}
-          onClick={() => setActiveService(service)}
-  onMouseMove={isDesktop() ? magneticMove : undefined}
-  onMouseLeave={isDesktop() ? magneticLeave : undefined}
->
-          {service === "rd" && "R&D"}
-          {service === "smm" && "SMM"}
-          {service === "tech" && "Technology"}
-          {service === "dreamx" && "DreamX"}
-        </div>
-
-        {/* EXPLORE BUTTON (OUTSIDE CIRCLE) */}
-        <button
-          className="service-btn"
-          onClick={() => navigate(`/services/${service}`)}
-        >
-          Explore
-        </button>
-
-      </div>
-    ))}
-  </div>
-</section>
-
+                <button
+                  className="service-btn"
+                  onClick={() => navigate(`/services/${service}`)}
+                >
+                  Explore
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* COMPLETED PROJECTS */}
         <section className="projects-showcase">
           <h2 className="projects-title">✅ Completed Projects</h2>
-          <p className="projects-sub">
-            9+ production-ready websites delivered across startups, brands, and platforms.
-          </p>
-
           <div className="projects-grid">
             {[
               ["DreamX World","https://www.dreamxworld.com"],
@@ -250,7 +217,6 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
       </ul>
       <span className="ongoing-status">In Progress</span>
     </div>
-
     <div className="ongoing-card">
       <h3>🏋️ Fitness / Gym Brand</h3>
       <p className="ongoing-desc">
@@ -265,7 +231,7 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     </div>
   </div>
 </section>
-{/* ================= STARTUP GROWTH PROGRAM 2026 ================= */}
+        {/* ================= STARTUP GROWTH PROGRAM 2026 ================= */}
 <section className="startup-program">
   <div className="program-badge">2026 INITIATIVE</div>
 
@@ -292,8 +258,8 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
       <h3>💰 Investment</h3>
       <p className="price">₹22,000 INR</p>
       <p className="note">
-        We believe <b>value creates commitment</b>.  
-        Paid efforts build serious founders.
+        We believe <b>value creates commitment</b>. Paid efforts build serious
+        founders.
       </p>
     </div>
 
@@ -308,23 +274,20 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
   </div>
 </section>
 
-{/* LEFT / RIGHT CONTENT */}
-
+{/* ================= JOIN US ================= */}
 <div className="join-center">
   <a
-    href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform?usp=dialog"
-    className="join-btn"
+    href="https://docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform"
     target="_blank"
     rel="noopener noreferrer"
+    className="join-btn"
   >
     Join Us →
   </a>
 </div>
-        {/* FINAL CTA */}
-        {/* ================= FOUNDER PROFILE ================= */}
-<section className="founder">
-  <div className="founder-glow" />
 
+{/* ================= FOUNDER PROFILE ================= */}
+<section className="founder">
   <h2 className="founder-title">
     Meet Our <span>Founder</span>
   </h2>
@@ -338,15 +301,16 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
   </p>
 
   <p className="founder-desc">
-    Startup-focused product thinker with a strong background in
-    <b> research, product strategy, and execution</b>.
-    Leads both technical development and business vision at WTI Agency.
+    Startup-focused product thinker with strong experience in
+    <b> research, product strategy, and execution</b>. Leads both technical
+    development and business vision at WTI Agency.
   </p>
 
   <blockquote className="founder-quote">
     “Technology should not just look good — it should solve real problems.”
   </blockquote>
 </section>
+
 {/* ================= WHY CHOOSE WTI ================= */}
 <section className="why-wti">
   <h2 className="why-title">
@@ -362,37 +326,45 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
     <div>🔁 Long-term partnership approach</div>
   </div>
 </section>
+
+{/* ================= FINAL CTA ================= */}
 <section className="final-cta">
-          <h2>Let’s <span>Build the Future</span> Together</h2>
-          <p>WTI Agency is ready to help you design, build, and scale.</p>
-          <button className="cta-btn">Start Your Journey →</button>
-        </section>
-        {/* ================= FOOTER ================= */}
-<footer className="site-footer">
+  <h2>
+    Let’s <span>Build the Future</span> Together
+  </h2>
+  <p>
+    Whether you’re a startup, business, or entrepreneur —
+    WTI Agency is ready to help you design, build, and scale.
+  </p>
+  <button className="cta-btn">Start Your Journey →</button>
+</section>
+
+{/* ================= FOOTER ================= */}
+<footer className="site-footer" id="contact">
   <div className="footer-content">
     <h3 className="footer-brand">WorldTechInnovations</h3>
 
     <p className="footer-contact">
-      📧 <a href="mailto:wtitechinnovations@gmail.com">
+      📧{" "}
+      <a href="mailto:worldtechinnovations786@gmail.com">
         worldtechinnovations786@gmail.com
       </a>
     </p>
 
     <p className="footer-contact">
-      📞 <a href="tel:+91XXXXXXXXXX">+91 9440463292</a>
+      📞 <a href="tel:+919440463292">+91 9440463292</a>
     </p>
 
     <div className="footer-socials">
       <a
-        href="https://www.instagram.com/worldtech_innovations?igsh=MXF4aXMzdWdmZ25udQ=="
+        href="https://www.instagram.com/worldtech_innovations"
         target="_blank"
         rel="noreferrer"
       >
         Instagram
       </a>
-
       <a
-        href="https://linkedin.com/in/YOUR_LINKEDIN"
+        href="https://linkedin.com"
         target="_blank"
         rel="noreferrer"
       >
@@ -402,7 +374,6 @@ const magneticLeave = (e: React.MouseEvent<HTMLDivElement>) => {
 
     <p className="footer-copy">
       © {new Date().getFullYear()} WorldTechInnovations. All rights reserved.
-      here the reserved rights
     </p>
   </div>
 </footer>
