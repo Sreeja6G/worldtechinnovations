@@ -1806,27 +1806,25 @@ html {
   align-items: center;
   justify-content: center;
 }
-/* === FINAL FORCE FIX FOR EXPLORE BUTTON === */
+/* ================= MOBILE FIX ONLY ================= */
+@media (max-width: 768px) {
+  .service-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 🔥 centers everything */
+  }
 
-.service-wrap {
-  position: relative;
-  width: 180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .service-circle {
+    margin: 0 auto; /* 🔥 keep circle centered */
+  }
 
-.service-circle {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-}
-
-.service-btn {
-  position: relative;
-  margin-top: 16px;
-  width: auto;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+  .service-btn {
+    margin-top: 16px;
+    align-self: center; /* 🔥 stops side shifting */
+    position: relative;
+    left: auto;
+    right: auto;
+    transform: none !important;
+  }
 }
