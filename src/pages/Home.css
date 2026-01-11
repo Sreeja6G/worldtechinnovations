@@ -655,6 +655,18 @@
   font-weight: 700;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
+/* Hover color change (mouse move) */
+.service-circle:hover {
+  background: radial-gradient(
+    circle at top,
+    rgba(255,255,255,0.25),
+    var(--clr)
+  );
+  box-shadow: 
+    0 0 35px var(--clr),
+    0 0 80px rgba(0,0,0,0.6);
+  transform: scale(1.12);
+}
 
 /* unique colors */
 .service-circle.rd,
