@@ -336,7 +336,8 @@ export default function Home() {
     Whether you’re a startup, business, or entrepreneur —
     WTI Agency is ready to help you design, build, and scale.
   </p>
-  <button className="cta-btn">Start Your Journey →</button>
+  <button className="cta-btn"
+  onClick={()=>navigate("//docs.google.com/forms/d/e/1FAIpQLSfiatQOnSerCjDqTllEHoCIp719pnsppmzXefoK8w_i8IzzMg/viewform")}>Start Your Journey →</button>
 </section>
 
 {/* ================= FOOTER ================= */}
