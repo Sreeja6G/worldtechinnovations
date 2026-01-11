@@ -240,7 +240,7 @@ export default function Home() {
   </h2>
 
   <p className="program-sub">
-    Every year, WTI Agency partners with <b>5 high-potential startups</b> and
+    Every Month, WTI Agency partners with <b>7 high-potential startups</b> and
     helps them grow from idea to impact with full execution support.
   </p>
 
