@@ -277,4 +277,70 @@ html, body {
   min-height: 100vh;
   background-color: #0b0b0f;
 }
+/* =========================
+   EXPLORE BUTTON FIX
+   ========================= */
 
+/* DEFAULT (Mobile + Tablet) — SAFE */
+.service-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.service-btn {
+  position: static;       /* 👈 resets desktop overrides */
+  transform: none;
+  margin-top: 12px;
+}
+
+/* =========================
+   DESKTOP ONLY (Large screens)
+   ========================= */
+@media (min-width: 1200px) {
+  .service-wrap {
+    position: relative;
+  }
+
+  .service-btn {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+  }
+}/* =========================
+   EXPLORE BUTTON FIX
+   ========================= */
+
+/* DEFAULT (Mobile + Tablet) — SAFE */
+.service-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.service-btn {
+  position: static;       /* 👈 resets desktop overrides */
+  transform: none;
+  margin-top: 12px;
+}
+
+/* =========================
+   DESKTOP ONLY (Large screens)
+   ========================= */
+@media (min-width: 1200px) {
+  .service-wrap {
+    position: relative;
+  }
+
+  .service-btn {
+    position: absolute;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+  }
+}
