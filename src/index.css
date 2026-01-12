@@ -344,3 +344,31 @@ html, body {
     margin-top: 0;
   }
 }
+/* ===============================
+   SERVICE EXPLORE BUTTON – FIX
+   =============================== */
+
+.service-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* DEFAULT (mobile & tablet) */
+.service-btn {
+  position: static !important;
+  transform: none !important;
+  margin-top: 12px;
+}
+
+/* DESKTOP ONLY */
+@media (min-width: 1024px) {
+  .service-btn {
+    position: absolute !important;
+    top: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%) !important;
+    margin-top: 0;
+  }
+}
